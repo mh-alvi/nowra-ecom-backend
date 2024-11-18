@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-    AuthController,
     UserController,
     ProductController,
     OrderController,
@@ -16,22 +15,20 @@ use App\Http\Controllers\{
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/blogs', [BlogController::class, 'index']);
 
 // User Routes
 Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
     Route::get('/user/profile/{id}', [UserController::class, 'profile']);
     Route::put('/user/update/{id}', [UserController::class, 'updateProfile']);
 
-    Route::get('/products', [ProductController::class, 'index']);
-
-    Route::get('/blogs', [BlogController::class, 'index']);
-
     Route::post('/wishlist/add', [WishlistController::class, 'add']);
     Route::delete('/wishlist/{id}/delete', [WishlistController::class, 'delete']);
     Route::get('/wishlist', [WishlistController::class, 'index']);
 
-    Route::post('/orders/create', [OrderController::class, 'create']);
-    Route::get('/orders', [OrderController::class, 'index']);
+    Route::post('/order/create', [OrderController::class, 'create']);
+    Route::get('/order', [OrderController::class, 'index']);
 
     Route::post('/payments/initiate', [PaymentController::class, 'initiate']);
 });
