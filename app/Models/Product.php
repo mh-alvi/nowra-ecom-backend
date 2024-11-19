@@ -9,7 +9,7 @@ class Product extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
-    
+
     protected $fillable = [
         'name',
         'description',
@@ -25,7 +25,7 @@ class Product extends Model
     // Define a relationship to the Stock model, assuming each product belongs to a stock
     public function stock()
     {
-        return $this->belongsTo(Stock::class, 'stock_id');
+        return $this->belongsTo(Stock::class);
     }
 
     public function orders()

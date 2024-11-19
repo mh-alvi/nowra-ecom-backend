@@ -19,6 +19,6 @@ class Stock extends Model
     // Define the relationship with the Product model
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->hasOne(Product::class, 'product_id');
     }
 }
